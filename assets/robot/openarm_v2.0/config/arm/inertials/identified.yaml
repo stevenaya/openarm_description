@@ -1,0 +1,128 @@
+# Copyright 2026 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Identified inertials exported from system identification. base_link is kept from nominal because it is a fixed/root link outside the Pinocchio regressor links.
+
+base_link:
+  origin:
+    x: 0.00253123748061566
+    y: -0.0258185540330169
+    z: 2.70658291858903e-05
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 1.1432284943239561
+  inertia:
+    xx: 0.00113607806226198
+    xy: 3.81487993180929e-07
+    xz: 1.09161247709715e-08
+    yy: 0.00159935208714031
+    yz: 2.7521421737084e-08
+    zz: 0.000750541980863571
+link1:
+  origin:
+    x: -0.0009684557444415987
+    y: -0.04435347020626068
+    z: -0.0002270662662340328
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 1.1500003337860107
+  inertia:
+    xx: 0.0011367146275865596
+    xy: 1.0079079618043877e-05
+    xz: 2.6444735508303704e-06
+    yy: 0.0008052999195037867
+    yz: -1.8284625306761895e-06
+    zz: 0.0006738855249346595
+link2:
+  origin:
+    x: -0.02501162514090538
+    y: 0.000938087294343859
+    z: -0.030767099931836128
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.2833385169506073
+  inertia:
+    xx: 0.00015570692536483682
+    xy: 6.669784880496628e-08
+    xz: 5.340448363813931e-06
+    yy: 0.00011469650928940006
+    yz: 5.552288761598194e-07
+    zz: 8.297089697712e-05
+link3:
+  origin:
+    x: -0.007416668813675642
+    y: 0.0018997029401361942
+    z: -0.11574232578277588
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 1.0966242551803589
+  inertia:
+    xx: 0.0015163142414272301
+    xy: -1.1875947879595944e-06
+    xz: -9.390963500334839e-05
+    yy: 0.0013368010487385378
+    yz: -1.3708079994726228e-05
+    zz: 0.0006197750082458824
+link4:
+  origin:
+    x: -0.003996944520622492
+    y: -0.000492816383484751
+    z: -0.055598314851522446
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.550157368183136
+  inertia:
+    xx: 0.0005113978223608661
+    xy: 5.013847732708921e-06
+    xz: 2.5120111701945223e-06
+    yy: 0.0004742019826035446
+    yz: 6.838554598982083e-06
+    zz: 0.0002561247291320234
+link5:
+  origin:
+    x: -0.0012892766389995813
+    y: -0.00024264087551273406
+    z: -0.04764603450894356
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.5030861496925354
+  inertia:
+    xx: 0.000296797674109975
+    xy: 4.163899388611228e-06
+    xz: 5.320538210594659e-06
+    yy: 0.00035464038671783986
+    yz: -8.971382500025113e-07
+    zz: 0.00018198116071283747
+link6:
+  origin:
+    x: -0.0002560609136708081
+    y: 0.001021706615574658
+    z: -0.0012552272528409958
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.48467960953712463
+  inertia:
+    xx: 0.0001850871073800258
+    xy: 1.2683694789849103e-08
+    xz: 2.6280862754997384e-07
+    yy: 0.00014022360718755702
+    yz: 1.8853219678300488e-06
+    zz: 0.0001385493316653775

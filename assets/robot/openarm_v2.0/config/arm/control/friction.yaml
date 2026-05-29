@@ -1,0 +1,90 @@
+# Copyright 2026 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Identified arm friction parameters. Temporary schema until the control friction format is finalized.
+
+identified:
+  source_result: scripts/07_full_parameter_identification_tool_set/identification_results/50hz_butter_sg_expdyn_train_alpha_cuda_l2_0/result.json
+  model: expdyn
+  symmetric: true
+  alpha: 0.9824572205543518
+  notes:
+  - 'Power-law dynamic friction: tau = sign_smooth(dq) * (Fs + Dalpha * |dq|^alpha),
+    with low-speed deadzone smoothing.'
+  - Only arm joints are identified here; pinch gripper opening joint friction is intentionally
+    omitted.
+  joints:
+    joint1:
+      Fs: 0.5046245455741882
+      Dalpha: 0.18816900253295898
+      alpha: 0.9824572205543518
+      Fs_plus: 0.5046245455741882
+      Fs_minus: 0.5046245455741882
+      Dalpha_plus: 0.18816900253295898
+      Dalpha_minus: 0.18816900253295898
+    joint2:
+      Fs: 0.33790844678878784
+      Dalpha: 0.20076000690460205
+      alpha: 0.9824572205543518
+      Fs_plus: 0.33790844678878784
+      Fs_minus: 0.33790844678878784
+      Dalpha_plus: 0.20076000690460205
+      Dalpha_minus: 0.20076000690460205
+    joint3:
+      Fs: 0.40089815855026245
+      Dalpha: 0.24625179171562195
+      alpha: 0.9824572205543518
+      Fs_plus: 0.40089815855026245
+      Fs_minus: 0.40089815855026245
+      Dalpha_plus: 0.24625179171562195
+      Dalpha_minus: 0.24625179171562195
+    joint4:
+      Fs: 0.6609299182891846
+      Dalpha: 0.24495084583759308
+      alpha: 0.9824572205543518
+      Fs_plus: 0.6609299182891846
+      Fs_minus: 0.6609299182891846
+      Dalpha_plus: 0.24495084583759308
+      Dalpha_minus: 0.24495084583759308
+    joint5:
+      Fs: 0.08978892862796783
+      Dalpha: 0.01855948194861412
+      alpha: 0.9824572205543518
+      Fs_plus: 0.08978892862796783
+      Fs_minus: 0.08978892862796783
+      Dalpha_plus: 0.01855948194861412
+      Dalpha_minus: 0.01855948194861412
+    joint6:
+      Fs: 0.09846220910549164
+      Dalpha: 0.023855557665228844
+      alpha: 0.9824572205543518
+      Fs_plus: 0.09846220910549164
+      Fs_minus: 0.09846220910549164
+      Dalpha_plus: 0.023855557665228844
+      Dalpha_minus: 0.023855557665228844
+    joint7:
+      Fs: 0.08750266581773758
+      Dalpha: 0.021450869739055634
+      alpha: 0.9824572205543518
+      Fs_plus: 0.08750266581773758
+      Fs_minus: 0.08750266581773758
+      Dalpha_plus: 0.021450869739055634
+      Dalpha_minus: 0.021450869739055634
+  gripper_joints:
+    finger_joint1:
+      identified: false
+      reason: lock_gripper_dof fixed q=dq=ddq=0
+    finger_joint2:
+      identified: false
+      reason: mimic joint; lock_gripper_dof fixed q=dq=ddq=0
