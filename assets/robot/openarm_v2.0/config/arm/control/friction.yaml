@@ -234,3 +234,48 @@ identified_long_train:
     finger_joint2:
       identified: false
       reason: mimic joint; lock_gripper_dof fixed q=dq=ddq=0
+
+identified_lin_friction:
+  source_result: result.json
+  model: lin
+  symmetric: false
+  notes:
+  - Identified lin friction; only arm joints are identified here.
+  - Only arm joints are identified here; pinch gripper opening joint friction is intentionally omitted.
+  joints:
+    joint1:
+      kv: 0.17374637722969055
+      Fc_plus: 0.285605788230896
+      Fc_minus: 0.7059193849563599
+    joint2:
+      kv: 0.21730434894561768
+      Fc_plus: 0.005709490738809109 ### here the identified friction is very low, might be some overfitting.
+      Fc_minus: 0.6276522874832153
+    joint3:
+      kv: 0.22098228335380554
+      Fc_plus: 0.31361910700798035
+      Fc_minus: 0.515523374080658
+    joint4:
+      kv: 0.2578123211860657
+      Fc_plus: 0.5897231698036194
+      Fc_minus: 0.619389533996582
+    joint5:
+      kv: 0.01969298906624317
+      Fc_plus: 0.0572076290845871
+      Fc_minus: 0.11842358112335205
+    joint6:
+      kv: 0.03230113536119461
+      Fc_plus: 0.08853074908256531
+      Fc_minus: 0.08626725524663925
+    joint7:
+      kv: 0.021400554105639458
+      Fc_plus: 0.10544215887784958
+      Fc_minus: 0.06582332402467728
+  gripper_joints:
+    finger_joint1:
+      identified: false
+      reason: lock_gripper_dof fixed q=dq=ddq=0
+    finger_joint2:
+      identified: false
+      reason: mimic joint; lock_gripper_dof fixed q=dq=ddq=0
+

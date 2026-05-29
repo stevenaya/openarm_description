@@ -1,0 +1,64 @@
+# Copyright 2026 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Identified inertials exported from this system identification run. base_link origin is converted back from generated URDF frame by subtracting ee_mount_point x=0.0205.
+
+base_link:
+  origin:
+    x: -0.007226691946387292
+    y: 0.008010730147361755
+    z: -0.06120207905769348
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.6651685237884521
+  inertia:
+    xx: 0.00022714083143231863
+    xy: 4.877045475359956e-06
+    xz: 4.1702447444596797e-07
+    yy: 0.0001608442421651285
+    yz: -1.5123003653202982e-06
+    zz: 0.00017117113933343332
+link1:
+  origin:
+    x: -0.012449106201529503
+    y: 0.001843241392634809
+    z: -0.024557994678616524
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.14037291705608368
+  inertia:
+    xx: 3.661326832753403e-05
+    xy: 1.4860758202821103e-06
+    xz: 7.347123093702585e-06
+    yy: 3.668883123795774e-05
+    yz: -3.732559468129505e-06
+    zz: 1.760074407637049e-05
+link2:
+  origin:
+    x: -0.01274513266980648
+    y: -0.0019122600788250566
+    z: -0.027162175625562668
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.12680324912071228
+  inertia:
+    xx: 3.498727637494754e-05
+    xy: -1.2905829420096017e-06
+    xz: 7.350828108605183e-06
+    yy: 3.575960321001053e-05
+    yz: 3.71659630216659e-06
+    zz: 1.6611925546073814e-05
