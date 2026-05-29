@@ -16,11 +16,11 @@ joint1:
   limit:
     lower: -0.7854
     upper: 0
-    effort: 7
+    effort: 10
     velocity: 5
 joint2:
   limit:
     lower: -0.7854
     upper: 0
-    effort: 7
+    effort: 10
     velocity: 5
