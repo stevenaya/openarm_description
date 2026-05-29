@@ -161,3 +161,76 @@ identified_low_com:
     finger_joint2:
       identified: false
       reason: mimic joint; lock_gripper_dof fixed q=dq=ddq=0
+
+identified_long_train:
+  source_result: scripts/07_full_parameter_identification_tool_set/identification_results/50hz_butter_sg_expdyn_train_alpha_cuda_long_train/result.json
+  model: expdyn
+  symmetric: true
+  alpha: 0.9980840682983398
+  notes:
+  - 'Power-law dynamic friction: tau = sign_smooth(dq) * (Fs + Dalpha * |dq|^alpha), with low-speed deadzone smoothing.'
+  - Long-train identification result; only arm joints are identified here.
+  joints:
+    joint1:
+      Fs: 0.5069220662117004
+      Dalpha: 0.18333253264427185
+      alpha: 0.9980840682983398
+      Fs_plus: 0.5069220662117004
+      Fs_minus: 0.5069220662117004
+      Dalpha_plus: 0.18333253264427185
+      Dalpha_minus: 0.18333253264427185
+    joint2:
+      Fs: 0.33728137612342834
+      Dalpha: 0.20167291164398193
+      alpha: 0.9980840682983398
+      Fs_plus: 0.33728137612342834
+      Fs_minus: 0.33728137612342834
+      Dalpha_plus: 0.20167291164398193
+      Dalpha_minus: 0.20167291164398193
+    joint3:
+      Fs: 0.3997120261192322
+      Dalpha: 0.24343444406986237
+      alpha: 0.9980840682983398
+      Fs_plus: 0.3997120261192322
+      Fs_minus: 0.3997120261192322
+      Dalpha_plus: 0.24343444406986237
+      Dalpha_minus: 0.24343444406986237
+    joint4:
+      Fs: 0.6677441000938416
+      Dalpha: 0.23621772229671478
+      alpha: 0.9980840682983398
+      Fs_plus: 0.6677441000938416
+      Fs_minus: 0.6677441000938416
+      Dalpha_plus: 0.23621772229671478
+      Dalpha_minus: 0.23621772229671478
+    joint5:
+      Fs: 0.08993790298700333
+      Dalpha: 0.01822313666343689
+      alpha: 0.9980840682983398
+      Fs_plus: 0.08993790298700333
+      Fs_minus: 0.08993790298700333
+      Dalpha_plus: 0.01822313666343689
+      Dalpha_minus: 0.01822313666343689
+    joint6:
+      Fs: 0.09875841438770294
+      Dalpha: 0.024460051208734512
+      alpha: 0.9980840682983398
+      Fs_plus: 0.09875841438770294
+      Fs_minus: 0.09875841438770294
+      Dalpha_plus: 0.024460051208734512
+      Dalpha_minus: 0.024460051208734512
+    joint7:
+      Fs: 0.08813774585723877
+      Dalpha: 0.02027747593820095
+      alpha: 0.9980840682983398
+      Fs_plus: 0.08813774585723877
+      Fs_minus: 0.08813774585723877
+      Dalpha_plus: 0.02027747593820095
+      Dalpha_minus: 0.02027747593820095
+  gripper_joints:
+    finger_joint1:
+      identified: false
+      reason: lock_gripper_dof fixed q=dq=ddq=0
+    finger_joint2:
+      identified: false
+      reason: mimic joint; lock_gripper_dof fixed q=dq=ddq=0

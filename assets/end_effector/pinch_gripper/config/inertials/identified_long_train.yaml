@@ -1,0 +1,64 @@
+# Copyright 2026 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Identified pinch gripper inertials exported from the long-train system identification run. base_link origin is converted back from generated URDF frame by subtracting ee_mount_point x=0.0205.
+
+base_link:
+  origin:
+    x: -0.007489806406199933
+    y: 0.007843642495572567
+    z: -0.06380238384008408
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.655886709690094
+  inertia:
+    xx: 0.00022226680441893428
+    xy: 4.309248144590978e-06
+    xz: 1.3154020899458626e-06
+    yy: 0.000158141832388796
+    yz: -1.6534867693608819e-06
+    zz: 0.00016794489286293246
+link1:
+  origin:
+    x: -0.012375997379422188
+    y: 0.0016039939364418387
+    z: -0.025310346856713295
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.13953596353530884
+  inertia:
+    xx: 3.6217781979947005e-05
+    xy: 1.3581026950758962e-06
+    xz: 7.164606807054448e-06
+    yy: 3.63266261348764e-05
+    yz: -3.617102987020386e-06
+    zz: 1.752157481241875e-05
+link2:
+  origin:
+    x: -0.012674330733716488
+    y: -0.001975995721295476
+    z: -0.027888579294085503
+    roll: 0
+    pitch: 0
+    yaw: 0
+  mass: 0.1259731650352478
+  inertia:
+    xx: 3.466903809844392e-05
+    xy: -1.348930237612613e-06
+    xz: 7.183336719470512e-06
+    yy: 3.5413975003694136e-05
+    yz: 3.7386485483731015e-06
+    zz: 1.6596599337837885e-05
