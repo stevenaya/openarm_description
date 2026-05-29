@@ -14,17 +14,17 @@
 
 body_link0:
   origin:
-    x: 0
+    x: -0.03
     y: 0
-    z: 0
+    z: 0.3865
     roll: 0
     pitch: 0
     yaw: 0
   mass: 13.89
   inertia:
-    xx: 1.653
+    xx: 0.01
     xy: 0.0
     xz: 0.0
-    yy: 1.653
+    yy: 0.01
     yz: 0.0
-    zz: 0.051
+    zz: 0.01
