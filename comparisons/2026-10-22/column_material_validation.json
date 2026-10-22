@@ -1,0 +1,20 @@
+{
+  "geometry_unchanged": true,
+  "only_column_material_changed": true,
+  "column_diffuse_rgba": [
+    0.09412,
+    0.09412,
+    0.09412,
+    1.0
+  ],
+  "column_shader": "lambert",
+  "chest_cover_diffuse_rgba": [
+    0.247,
+    0.247,
+    0.247,
+    1.0
+  ],
+  "recomputed_mass_properties_unchanged": true,
+  "model_config_and_urdf_unchanged": true,
+  "mesh_sha256": "79169006138c64c61c636c8de0481382f39d9158373edba0461b0845f7941c2c"
+}
