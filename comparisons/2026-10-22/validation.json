@@ -1,0 +1,203 @@
+{
+  "98": {
+    "same_camera": true,
+    "same_common_joint_poses": true,
+    "camera": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Name": "Current View",
+      "Value": "Orbit (rviz)",
+      "Distance": 0.29,
+      "Pitch": 0.28,
+      "Yaw": -0.8,
+      "Focal Point": {
+        "X": 0,
+        "Y": 0,
+        "Z": -0.035
+      },
+      "Near Clip Distance": 0.001,
+      "Target Frame": "<Fixed Frame>",
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.001
+    },
+    "images": [
+      {
+        "file": "98_before.png",
+        "sha256": "f616820380711182045a385ab7e282398f4e13026506b0e8ad45095f23f2e567",
+        "size": [
+          1018,
+          806
+        ]
+      },
+      {
+        "file": "98_after.png",
+        "sha256": "d12d2d8dadd92ec246060ceb8dbe22adae0b9dc438fdef5a2ca9f5270d1e0bfd",
+        "size": [
+          1018,
+          806
+        ]
+      }
+    ]
+  },
+  "99_cover": {
+    "same_camera": true,
+    "same_common_joint_poses": true,
+    "camera": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Name": "Current View",
+      "Value": "Orbit (rviz)",
+      "Distance": 0.5,
+      "Pitch": 0.62,
+      "Yaw": 0.7,
+      "Focal Point": {
+        "X": 0.0,
+        "Y": 0,
+        "Z": 0.665
+      },
+      "Near Clip Distance": 0.001,
+      "Target Frame": "<Fixed Frame>",
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.001
+    },
+    "images": [
+      {
+        "file": "99_cover_before.png",
+        "sha256": "b09c944e384607bdcd5807063e68dd9c733d327eec239b1acc3d722c086c1268",
+        "size": [
+          1018,
+          806
+        ]
+      },
+      {
+        "file": "99_cover_after.png",
+        "sha256": "b1d7dee928f30d384541bfbdc2e1d6d958326601ee12bd363a3e8f6dcad39018",
+        "size": [
+          1018,
+          806
+        ]
+      }
+    ]
+  },
+  "99_inertia": {
+    "same_camera": true,
+    "same_common_joint_poses": true,
+    "camera": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Name": "Current View",
+      "Value": "Orbit (rviz)",
+      "Distance": 1.65,
+      "Pitch": 0.2,
+      "Yaw": 0.7,
+      "Focal Point": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.25
+      },
+      "Near Clip Distance": 0.001,
+      "Target Frame": "<Fixed Frame>",
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.001
+    },
+    "images": [
+      {
+        "file": "99_inertia_before.png",
+        "sha256": "1a715bfee8585087c1aa5e595bcbbd55917325ebb2b0e2bca7a32b824fc13980",
+        "size": [
+          1018,
+          806
+        ]
+      },
+      {
+        "file": "99_inertia_after.png",
+        "sha256": "ad32a52aace9236b8cdd5e7cf54ce1b09467dcc66a79d8fcf3de6743a2b1ad2a",
+        "size": [
+          1018,
+          806
+        ]
+      }
+    ],
+    "native_rviz_inertia": true,
+    "mass_kg": [
+      3.74,
+      3.734812201783
+    ]
+  },
+  "100": {
+    "same_camera": true,
+    "same_common_joint_poses": true,
+    "camera": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Name": "Current View",
+      "Value": "Orbit (rviz)",
+      "Distance": 0.27,
+      "Pitch": -1.0,
+      "Yaw": -0.3,
+      "Focal Point": {
+        "X": -0.005,
+        "Y": 0,
+        "Z": -0.05
+      },
+      "Near Clip Distance": 0.001,
+      "Target Frame": "<Fixed Frame>",
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.001
+    },
+    "images": [
+      {
+        "file": "100_before.png",
+        "sha256": "3cf49a16c3db55ba239a55a572fcd1f0d6b78a462ad7ecbc4af84265c5800ed5",
+        "size": [
+          1018,
+          806
+        ]
+      },
+      {
+        "file": "100_after.png",
+        "sha256": "6a444c5e3c7b7225a60f8794bbb9c907af9b481e6519c7d823523d80a189ded4",
+        "size": [
+          1018,
+          806
+        ]
+      }
+    ],
+    "camera_visual_in_base": true
+  },
+  "101": {
+    "same_camera": true,
+    "same_common_joint_poses": true,
+    "camera": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Name": "Current View",
+      "Value": "Orbit (rviz)",
+      "Distance": 0.72,
+      "Pitch": 0.27,
+      "Yaw": 0.18,
+      "Focal Point": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0.02
+      },
+      "Near Clip Distance": 0.001,
+      "Target Frame": "<Fixed Frame>",
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.001
+    },
+    "images": [
+      {
+        "file": "101_before.png",
+        "sha256": "28450d4a8c1eb9ad0a14ce162d7230d031acc72ba859e7dab564c2b1d27f9076",
+        "size": [
+          1018,
+          806
+        ]
+      },
+      {
+        "file": "101_after.png",
+        "sha256": "f3851c78f12e367ef4a6181e493b173d0cb13b5f46911109ef5e8034fb7b0354",
+        "size": [
+          1018,
+          806
+        ]
+      }
+    ]
+  }
+}
