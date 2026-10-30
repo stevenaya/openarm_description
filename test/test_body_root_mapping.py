@@ -55,6 +55,8 @@ class BodyRootMappingTest(unittest.TestCase):
                                  before['openarm_body_link0'])
                 for name in before.keys() & after.keys():
                     self.assertEqual(after[name], before[name])
+                if version == 'v2':
+                    self.assertIn('fixture_camera_mount_point', after)
 
 
 if __name__ == '__main__':

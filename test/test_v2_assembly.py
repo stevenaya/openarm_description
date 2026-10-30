@@ -210,6 +210,20 @@ class AssemblyTest(unittest.TestCase):
         self.assertFalse([joint for joint in robot.findall('joint')
                           if joint.get('type') != 'fixed'])
 
+    def test_camera_mount_emit_preserves_pose(self):
+        for parent_file in [
+            'body/v2.0/config/struct/reference_points.yaml',
+            'accessory/zed_mount/config/struct/reference_points.yaml',
+        ]:
+            off, on = [
+                expand_modified(
+                    {parent_file: set_reference_emit(
+                        'camera_mount_point', emit)}
+                )
+                for emit in [False, True]
+            ]
+            self.assert_common_poses(off, on)
+
     def test_joint_order_does_not_define_the_arm_chain(self):
         def reorder(value):
             value['joints'] = dict(reversed(list(value['joints'].items())))

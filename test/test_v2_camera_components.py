@@ -218,6 +218,35 @@ class CameraAssemblyTest(unittest.TestCase):
         for width, minimum in zip(widths(0.0), narrowest):
             self.assertAlmostEqual(width, minimum, delta=tolerance)
 
+    def test_default_bimanual_includes_camera(self):
+        robot = expand('default_bimanual')
+        self.assertIsNotNone(
+            robot.find("link[@name='openarm_body_zed_mount_base_link']")
+        )
+        self.assertIsNotNone(robot.find(
+            "link[@name='openarm_body_zed_camera_link']"))
+        single = expand('right_arm_with_pinch_gripper')
+        self.assertIsNone(single.find(
+            "link[@name='openarm_body_zed_mount_base_link']"))
+        self.assertIsNone(single.find(
+            "link[@name='openarm_body_zed_camera_link']"))
+
+    def test_mount_port_matches_combined_cad(self):
+        robot = expand('default_bimanual')
+        expected = transform(
+            {
+                'xyz': '0.0563085336684035 0.00869000000000031 0.808829226007701',
+                'rpy': '0 1.08210413623648 0',
+            }
+        )
+        self.assertTransform(
+            poses(robot)['openarm_body_zed_mount_camera_mount_point'], expected
+        )
+        mount = robot.find("link[@name='openarm_body_zed_mount_base_link']")
+        self.assertAlmostEqual(
+            float(mount.find('inertial/mass').get('value')), 0.13704)
+        self.assertIsNone(mount.find('collision'))
+
     def test_pedestal_uses_volume_scaled_cover_mass(self):
         for preset in [
             'default_bimanual',
@@ -236,6 +265,27 @@ class CameraAssemblyTest(unittest.TestCase):
                 ],
                 [1, 1, 1],
             )
+
+    def test_zed_mini_uses_official_camera_tree(self):
+        robot = expand('default_bimanual')
+        joint = robot.find("joint[@name='openarm_body_zed_mount_joint']")
+        self.assertEqual(
+            joint.find('parent').get('link'),
+            'openarm_body_zed_mount_camera_mount_point',
+        )
+        self.assertEqual(
+            joint.find('child').get('link'), 'openarm_body_zed_camera_link'
+        )
+        center = robot.find("link[@name='openarm_body_zed_camera_center']")
+        self.assertTrue(
+            center.find(
+                'visual/geometry/mesh').get('filename').endswith('/zedm.stl')
+        )
+        for side, y in [('left', 0.0315), ('right', -0.0315)]:
+            origin = robot.find(
+                f"joint[@name='openarm_body_zed_{side}_camera_joint']/origin"
+            )
+            self.assertAlmostEqual(float(origin.get('xyz').split()[1]), y)
 
 
 if __name__ == '__main__':
