@@ -2,6 +2,7 @@
 
 import unittest
 
+from test_v1_assembly import expand as expand_v1
 from test_v2_assembly import expand_modified as expand_v2
 from test_v2_camera_components import poses
 
@@ -43,7 +44,7 @@ def renamed_body_changes(version, instance_prefix=None):
 class BodyRootMappingTest(unittest.TestCase):
 
     def test_local_root_and_prefix_update_body_references(self):
-        for version, expand in [('v2', expand_v2)]:
+        for version, expand in [('v1', expand_v1), ('v2', expand_v2)]:
             with self.subTest(version=version):
                 before = poses(expand())
                 robot = expand(renamed_body_changes(version, 'fixture_'))
