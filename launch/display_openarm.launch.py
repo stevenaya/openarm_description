@@ -85,6 +85,9 @@ def robot_state_publisher_spawner(
             "robot_preset": context.perform_substitution(robot_preset),
             "collapse_internal_empty_links": context.perform_substitution(collapse_internal_empty_links),
             "emit_grasp_frame": context.perform_substitution(emit_grasp_frame),
+            "ros2_control": context.perform_substitution(ros2_control),
+            "use_fake_hardware": context.perform_substitution(use_fake_hardware),
+            "fake_sensor_commands": context.perform_substitution(fake_sensor_commands),
         }
 
     robot_description = xacro.process_file(
@@ -112,7 +115,7 @@ def generate_launch_description():
     robot_preset_arg = DeclareLaunchArgument(
         "robot_preset",
         default_value="default_bimanual",
-        description="Robot preset for v2.0 (e.g. default_bimanual, right_arm, left_arm, right_arm_with_pinch_gripper, left_arm_with_pinch_gripper).",
+        description="Robot preset for v2.0 (e.g. default_bimanual, right_arm, left_arm).",
     )
     rviz_config_arg = DeclareLaunchArgument(
         "rviz_config",
