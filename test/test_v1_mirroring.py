@@ -64,6 +64,15 @@ class V1MirroringTest(unittest.TestCase):
             self.assertAlmostEqual(
                 float(limit.get('upper')), 1.745329 + sign * math.pi / 2)
 
+    def test_elbow_joint_origins_are_on_the_centerline(self):
+        robot = expand()
+        for side in ['left', 'right']:
+            for index, expected in [(4, 0.0), (5, 0.0)]:
+                joint = robot.find(
+                    f"joint[@name='openarm_{side}_joint{index}']")
+                self.assertEqual(
+                    numbers(joint.find('origin'), 'xyz')[1], expected)
+
     def test_joint_axes_keep_motor_positive_directions(self):
         expected = [[0, 0, 1], [-1, 0, 0], [0, 0, 1], [0, 1, 0],
                     [0, 0, 1], [1, 0, 0], [0, 1, 0]]

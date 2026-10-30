@@ -129,6 +129,17 @@ class V1AssemblyTest(unittest.TestCase):
                 self.assertEqual(
                     scales_a, [scales_b[0], sign*scales_b[1], scales_b[2]])
 
+    def test_centered_origins_keep_original_axis_directions(self):
+        robot = expand(bimanual=False)
+        expected = [[0, 0, 1], [-1, 0, 0], [0, 0, 1], [0, 1, 0],
+                    [0, 0, 1], [1, 0, 0], [0, 1, 0]]
+        for i, axis in enumerate(expected, 1):
+            j = robot.find(f"joint[@name='openarm_joint{i}']")
+            self.assertEqual(xyz(j.find('axis')), axis)
+            self.assertEqual(xyz(j.find('origin'))[:2], [0, 0])
+        c = xyz(robot.find("link[@name='openarm_link4']/inertial/origin"))
+        self.assertAlmostEqual(c[1], -0.03030575826634669 + 0.0315)
+
     def test_origin_and_limit_overrides_are_applied_before_mirroring(self):
         def change(preset):
             for name in ['primary_arm', 'secondary_arm']:
