@@ -34,7 +34,7 @@ def expand(interface=None):
                         copy_function=os.symlink)
         product = share / 'assets/body/fixture'
         product.mkdir(parents=True)
-        source = ROOT / 'assets/robot/openarm_v2.0/config/body'
+        source = ROOT / 'assets/body/v2.0/config'
         (product / 'config').symlink_to(source, target_is_directory=True)
         fallback = share / 'assets/body/fixture_default'
         fallback.mkdir()
@@ -46,10 +46,10 @@ def expand(interface=None):
             'robot': {'root_frame': 'world', 'components': ['first', 'second']},
             'first': {'type': 'body', 'product': 'fixture', 'config': None,
                       'enabled': True, 'inertials': 'nominal',
-                      'prefix': 'first_', 'link_name': 'first_root'},
+                      'prefix': 'first_'},
             'second': {'type': 'body', 'product': 'fixture_default', 'config': None,
                        'enabled': True, 'inertials': 'nominal',
-                       'prefix': 'second_', 'link_name': 'second_root',
+                       'prefix': 'second_',
                        'connection': {'attach_to': 'first'}},
         }
         target = share / (
@@ -64,8 +64,8 @@ def expand(interface=None):
 class ComponentInterfaceTest(unittest.TestCase):
     def test_unknown_product_with_no_interface_uses_yaml(self):
         robot = expand()
-        first = robot.find("link[@name='first_root']/inertial/mass")
-        second = robot.find("link[@name='second_root']/inertial/mass")
+        first = robot.find("link[@name='first_body_link0']/inertial/mass")
+        second = robot.find("link[@name='second_body_link0']/inertial/mass")
         self.assertIsNotNone(first)
         self.assertEqual(first.attrib, second.attrib)
 
@@ -90,9 +90,9 @@ class ComponentInterfaceTest(unittest.TestCase):
 </robot>'''.replace('@{', '$' + '{')
         robot = expand(interface)
         self.assertEqual(float(robot.find(
-            "link[@name='first_root']/inertial/mass").get('value')), 1.0)
+            "link[@name='first_body_link0']/inertial/mass").get('value')), 1.0)
         self.assertGreater(float(robot.find(
-            "link[@name='second_root']/inertial/mass").get('value')), 3.0)
+            "link[@name='second_body_link0']/inertial/mass").get('value')), 3.0)
         self.assertIsNotNone(robot.find("link[@name='first_custom']"))
         self.assertIsNone(robot.find("link[@name='second_custom']"))
 

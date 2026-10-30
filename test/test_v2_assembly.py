@@ -109,7 +109,7 @@ class AssemblyTest(unittest.TestCase):
                     robot['components']) + ['mount_probe']
                 value['robot'] = robot
                 probe = copy.deepcopy(value['body'])
-                probe['link_name'] = 'test_probe'
+                probe['prefix'] = 'test_probe_'
                 probe['connection'] = {
                     'attach_to': 'primary_arm_end_effector',
                     'parent_reference_point': 'camera_view_frame',
@@ -127,7 +127,7 @@ class AssemblyTest(unittest.TestCase):
                 values = [poses(robot) for robot in robots]
                 for robot in robots:
                     self.assertIsNotNone(robot.find(
-                        "link[@name='test_probe']"))
+                        "link[@name='test_probe_body_link0']"))
                 self.assert_common_poses(*robots)
                 delta = offset or dict.fromkeys(
                     ['x', 'y', 'z', 'roll', 'pitch', 'yaw'], 0.0)
@@ -140,7 +140,7 @@ class AssemblyTest(unittest.TestCase):
                 )
                 for value in values:
                     self.assertLess(max(
-                        abs(a - b) for row, target in zip(value['test_probe'], expected)
+                        abs(a - b) for row, target in zip(value['test_probe_body_link0'], expected)
                         for a, b in zip(row, target)), 1e-10)
 
     def test_arm_tip_reference_emit_with_and_without_collapse(self):
@@ -193,6 +193,22 @@ class AssemblyTest(unittest.TestCase):
         ):
             expand_modified(
                 {'robot/openarm_v2.0/config/robot_presets/default_bimanual.yaml': conflict})
+
+    def test_body_can_assemble_without_arms(self):
+        def body_only(value):
+            robot = value['robot']
+            robot['components'] = ['body']
+            value['robot'] = robot
+            return value
+
+        robot = expand_modified(
+            {'robot/openarm_v2.0/config/robot_presets/default_bimanual.yaml': body_only})
+        body = robot.find("link[@name='openarm_body_link0']")
+        self.assertIsNotNone(body)
+        self.assertTrue(body.find('visual/geometry/mesh').get('filename').startswith(
+            'package://openarm_description/assets/body/v2.0/'))
+        self.assertFalse([joint for joint in robot.findall('joint')
+                          if joint.get('type') != 'fixed'])
 
     def test_joint_order_does_not_define_the_arm_chain(self):
         def reorder(value):

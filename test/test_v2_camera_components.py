@@ -218,6 +218,25 @@ class CameraAssemblyTest(unittest.TestCase):
         for width, minimum in zip(widths(0.0), narrowest):
             self.assertAlmostEqual(width, minimum, delta=tolerance)
 
+    def test_pedestal_uses_volume_scaled_cover_mass(self):
+        for preset in [
+            'default_bimanual',
+        ]:
+            body = expand(preset).find("link[@name='openarm_body_link0']")
+            self.assertAlmostEqual(
+                float(body.find('inertial/mass').get('value')),
+                3.734812201783, places=10)
+            inertia = body.find('inertial/inertia')
+            for key in ['ixy', 'ixz', 'iyz']:
+                self.assertEqual(float(inertia.get(key)), 0)
+            self.assertEqual(
+                [
+                    float(x)
+                    for x in body.find('visual/geometry/mesh').get('scale').split()
+                ],
+                [1, 1, 1],
+            )
+
 
 if __name__ == '__main__':
     unittest.main()
