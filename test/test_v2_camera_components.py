@@ -14,8 +14,13 @@
 
 """Check camera assembly, mirrored frames, and retained V2 model properties."""
 
+import os
+import shutil
+import tempfile
+import yaml
 from functools import lru_cache
 import math
+from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -83,16 +88,22 @@ def collada_node_vertices(path, node_id):
 
 @lru_cache(maxsize=None)
 def expand(preset, collapse=None):
-    with package_share_at(ROOT):
-        document = xacro.process_file(
-            str(ENTRY),
-            mappings={
-                'robot_preset': preset,
-                'collapse_internal_empty_links':
-                    str(collapse if collapse is not None else True).lower(),
-                'emit_grasp_frame': 'true',
-            },
-        )
+    with tempfile.TemporaryDirectory() as share:
+        shutil.copytree(ROOT / 'assets', Path(share) / 'assets',
+                        copy_function=os.symlink)
+        if collapse is not None:
+            target = Path(
+                share) / 'assets/robot/openarm_v2.0/config/arm/struct/topology.yaml'
+            value = yaml.safe_load(target.read_text())
+            value['collapse_empty_end'] = collapse
+            target.unlink()
+            target.write_text(yaml.safe_dump(value, sort_keys=False))
+        with package_share_at(share):
+            document = xacro.process_file(
+                str(ENTRY), mappings={
+                    'robot_preset': preset, 'emit_grasp_frame': 'true',
+                },
+            )
     robot = ET.fromstring(document.toxml())
     names = [link.get('name') for link in robot.findall('link')]
     if len(names) != len(set(names)):
