@@ -22,13 +22,13 @@ limitations under the License.
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <!-- Preserve the mesh's embedded materials. -->
       <geometry>
-        <mesh filename="package://openarm_description/assets/robot/openarm_v2.0/meshes/body/visual/body_link0.dae" scale="1.0 1.0 1.0"/>
+        <mesh filename="package://openarm_description/assets/body/v2.0/meshes/visual/body_link0.dae" scale="1.0 1.0 1.0"/>
       </geometry>
     </visual>
     <collision name="openarm_body_link0_collision">
       <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
       <geometry>
-        <mesh filename="package://openarm_description/assets/robot/openarm_v2.0/meshes/body/collision/body_link0_symp.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://openarm_description/assets/body/v2.0/meshes/collision/body_link0_symp.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
     <inertial>
@@ -711,14 +711,6 @@ limitations under the License.
         <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
-    <!-- <joint name="openarm_${left_arm_prefix}finger_joint2">
-        <param name="mimic">openarm_${left_arm_prefix}finger_joint1</param>
-        <param name="multiplier">${left_finger_mimic_multiplier}</param>
-        <command_interface name="position"/>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint> -->
   </ros2_control>
   <ros2_control name="openarm_right_hardware_interface" type="system">
     <hardware>
@@ -839,13 +831,5 @@ limitations under the License.
         <param name="initial_value">0.0</param>
       </state_interface>
     </joint>
-    <!-- <joint name="openarm_${right_arm_prefix}finger_joint2">
-        <param name="mimic">openarm_${right_arm_prefix}finger_joint1</param>
-        <param name="multiplier">${right_finger_mimic_multiplier}</param>
-        <command_interface name="position"/>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-      </joint> -->
   </ros2_control>
 </robot>

@@ -113,7 +113,7 @@ class AssemblyTest(unittest.TestCase):
                     robot['components']) + ['mount_probe']
                 value['robot'] = robot
                 probe = copy.deepcopy(value['body'])
-                probe['link_name'] = 'test_probe'
+                probe['prefix'] = 'test_probe_'
                 probe['connection'] = {
                     'attach_to': 'primary_arm_end_effector',
                     'parent_reference_point': 'camera_view_frame',
@@ -131,7 +131,7 @@ class AssemblyTest(unittest.TestCase):
                 values = [poses(robot) for robot in robots]
                 for robot in robots:
                     self.assertIsNotNone(robot.find(
-                        "link[@name='test_probe']"))
+                        "link[@name='test_probe_body_link0']"))
                 self.assert_common_poses(*robots)
                 delta = offset or dict.fromkeys(
                     ['x', 'y', 'z', 'roll', 'pitch', 'yaw'], 0.0)
@@ -144,7 +144,7 @@ class AssemblyTest(unittest.TestCase):
                 )
                 for value in values:
                     self.assertLess(max(
-                        abs(a - b) for row, target in zip(value['test_probe'], expected)
+                        abs(a - b) for row, target in zip(value['test_probe_body_link0'], expected)
                         for a, b in zip(row, target)), 1e-10)
 
     def test_arm_tip_reference_emit_with_and_without_collapse(self):
@@ -198,6 +198,97 @@ class AssemblyTest(unittest.TestCase):
             expand_modified(
                 {'robot/openarm_v2.0/config/robot_presets/default_bimanual.yaml': conflict})
 
+    def test_body_can_assemble_without_arms(self):
+        def body_only(value):
+            robot = value['robot']
+            robot['components'] = ['body']
+            value['robot'] = robot
+            return value
+
+        robot = expand_modified(
+            {'robot/openarm_v2.0/config/robot_presets/default_bimanual.yaml': body_only})
+        body = robot.find("link[@name='openarm_body_link0']")
+        self.assertIsNotNone(body)
+        self.assertTrue(body.find('visual/geometry/mesh').get('filename').startswith(
+            'package://openarm_description/assets/body/v2.0/'))
+        self.assertFalse(robot.findall('ros2_control'))
+        self.assertFalse([joint for joint in robot.findall('joint')
+                          if joint.get('type') != 'fixed'])
+
+    def test_controls_reference_existing_active_joints(self):
+        preset_dir = ROOT / 'assets/robot/openarm_v2.0/config/robot_presets'
+        for preset in sorted(preset_dir.glob('*.yaml')):
+            with self.subTest(preset=preset.stem):
+                robot = expand_modified(robot_preset=preset.stem)
+                joints = {j.get('name'): j for j in robot.findall('joint')}
+                controlled = [
+                    j.get('name') for j in robot.findall('ros2_control/joint')
+                ]
+                active = {
+                    name
+                    for name, joint in joints.items()
+                    if joint.get('type') != 'fixed' and joint.find('mimic') is None
+                }
+                self.assertEqual(set(controlled), active)
+                self.assertEqual(len(controlled), len(set(controlled)))
+
+    def test_control_output_can_be_disabled(self):
+        robot = expand_modified(ros2_control=False)
+        self.assertEqual(robot.findall('ros2_control'), [])
+        self.assertIsNotNone(robot.find("joint[@name='openarm_right_joint1']"))
+
+    def test_control_names_follow_component_prefixes(self):
+        def rename(value):
+            for name, prefix in [
+                ('primary_arm', 'custom_arm_'),
+                ('primary_arm_end_effector', 'custom_tool_'),
+            ]:
+                component = value[name]
+                component['prefix'] = prefix
+                value[name] = component
+            return value
+
+        robot = expand_modified(
+            {'robot/openarm_v2.0/config/robot_presets/default_bimanual.yaml': rename})
+        controlled = {j.get('name')
+                      for j in robot.findall('ros2_control/joint')}
+        self.assertIn('custom_arm_joint1', controlled)
+        self.assertIn('custom_tool_finger_joint1', controlled)
+        self.assertNotIn('openarm_left_joint1', controlled)
+        self.assertTrue(controlled <= {j.get('name')
+                        for j in robot.findall('joint')})
+
+    def test_real_hardware_parameters_are_preserved(self):
+        robot = expand_modified(
+            use_fake_hardware=False,
+            left_can_interface='left_test',
+            right_can_interface='right_test',
+            can_fd=False,
+        )
+        gains = xacro.load_yaml(
+            str(
+                ROOT / 'assets/robot/openarm_v2.0/config/arm/control/control_gains.yaml'
+            )
+        )
+        for side in ['left', 'right']:
+            system = robot.find(
+                f"ros2_control[@name='openarm_{side}_hardware_interface']"
+            )
+            hardware = system.find('hardware')
+            self.assertEqual(hardware.find('plugin').text,
+                             'openarm_hardware/OpenArmHW')
+            params = {p.get('name'): p.text for p in hardware.findall('param')}
+            self.assertEqual(params['arm_type'], 'v20')
+            self.assertEqual(params['arm_prefix'], side + '_')
+            self.assertEqual(params['can_interface'], side + '_test')
+            self.assertEqual(params['can_fd'].lower(), 'false')
+            self.assertEqual(params['ee_type'], 'pinch_gripper')
+            for i in range(1, 8):
+                for gain in ['kp', 'kd']:
+                    self.assertEqual(
+                        float(params[f'{gain}{i}']), gains[f'joint{i}'][gain]
+                    )
+
     def test_joint_order_does_not_define_the_arm_chain(self):
         def reorder(value):
             value['joints'] = dict(reversed(list(value['joints'].items())))
@@ -227,6 +318,9 @@ class AssemblyTest(unittest.TestCase):
         robot = expand_modified(changes, robot_preset='right_arm')
         self.assertIsNotNone(robot.find("joint[@name='openarm_right_wrist']"))
         self.assertIsNone(robot.find("joint[@name='openarm_right_joint7']"))
+        self.assertIsNotNone(
+            robot.find("ros2_control/joint[@name='openarm_right_wrist']")
+        )
 
     def test_joint_type_and_parent_come_from_topology(self):
         def arm_change(value):
@@ -333,6 +427,27 @@ class AssemblyTest(unittest.TestCase):
         with self.assertRaisesRegex(xacro.XacroException, 'unknown link'):
             expand_modified(
                 {'robot/openarm_v2.0/config/arm/struct/topology.yaml': change})
+
+    def test_single_arm_control_uses_selected_side(self):
+        for side in ['left', 'right']:
+            robot = expand_modified(
+                robot_preset=side + '_arm',
+                use_fake_hardware=False,
+                left_can_interface='left_test',
+                right_can_interface='right_test',
+            )
+            systems = robot.findall('ros2_control')
+            self.assertEqual(len(systems), 1)
+            self.assertEqual(
+                systems[0].get('name'), 'openarm_' +
+                side + '_hardware_interface'
+            )
+            params = {
+                p.get('name'): p.text for p in systems[0].findall('hardware/param')
+            }
+            self.assertEqual(params['can_interface'], side + '_test')
+            self.assertEqual(params['ee_type'], None)
+            self.assertEqual(len(systems[0].findall('joint')), 7)
 
     def test_arm_topology_selects_empty_tip_collapse(self):
         enabled = expand_modified()
