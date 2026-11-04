@@ -209,3 +209,27 @@ def test_hardware_parameters_follow_input():
     assert params['mock_sensor_commands'].lower() == 'true'
     assert float(params['position_state_following_offset']) == 0.0
     assert 'fake_sensor_commands' not in params and 'state_following_offset' not in params
+
+
+def test_articulated_body_control_uses_declared_names():
+    data = support.chain()
+    data['struct/topology.yaml']['joints']['pivot']['type'] = 'prismatic'
+    spec = support.preset(lift=support.component(prefix='platform_', control=dict(
+        system_name='lift_control', hardware_plugin='fixture/Lift', device='lift_test')))
+    robot = support.assemble(spec, {'lift': data},
+                             ros2_control=True, use_fake_hardware=False)
+    system = robot.find('ros2_control')
+    assert system.get('name') == spec['lift']['control']['system_name']
+    assert system.find(
+        'hardware/plugin').text == spec['lift']['control']['hardware_plugin']
+    assert system.find("hardware/param[@name='device']").text == 'lift_test'
+    expected = {spec['lift']['prefix']+name for name,
+                joint in data['struct/topology.yaml']['joints'].items() if joint['type'] != 'fixed'}
+    assert {j.get('name') for j in system.findall('joint')} == expected
+
+    robot = support.assemble(spec, {'lift': data}, ros2_control=True,
+                             use_fake_hardware=True, fake_sensor_commands=True)
+    assert robot.find(
+        'ros2_control/hardware/plugin').text == 'mock_components/GenericSystem'
+    assert robot.find(
+        "ros2_control/hardware/param[@name='mock_sensor_commands']").text.lower() == 'true'

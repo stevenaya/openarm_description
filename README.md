@@ -22,6 +22,20 @@ Recommended starting point:
 
 The V2 `default_bimanual` preset includes both arms, pinch grippers, the camera mount, and the official ZED Mini model. Single-arm presets are also available. Use `ros2_control:=false` when exporting a model without control interfaces.
 
+## V2 Cell preview
+
+The Cell preset reuses the V2 arms, grippers and head camera, with a 0–0.3 m vertical lifter. The ceiling camera is represented by its mounting frame and the geometry already included in the Cell mesh.
+
+```bash
+ros2 launch openarm_description display_openarm.launch.py arm_type:=v20 robot_preset:=cell_bimanual rviz_config:=cell_bimanual.rviz ros2_control:=false
+```
+
+Lifter mass is estimated at 3.398 kg from the public CAD volumes, using aluminum for the short column and steel for the rail connectors. Its COM and inertia include the parallel-axis terms. Effort and velocity limits remain zero placeholders until hardware calibration. Cell collision boxes follow the MuJoCo Cell model. Visual materials use the Isaac Lab Cell palette with a metallic-gray lifter and black guide. When copying raw DAE diffuse values into linear USD color inputs, apply the inverse sRGB transfer.
+
+With ros2_control enabled, the lifter has its own position, velocity and effort interfaces. Use use_fake_hardware:=true for mock hardware; a real lifter plugin can be selected through body.control.hardware_plugin and flat driver parameters under body.control in the preset.
+
+Cell CAD-derived meshes use the [included license](assets/body/cell/LICENSE.txt). CAD source: [OpenArm Hardware 2.0.0](https://github.com/enactic/openarm_hardware/releases/tag/2.0.0).
+
 ## Component interfaces
 
 Robot entries load `assets/component_loader.xacro`. The loader locates each component using the existing `type`, `product`, and `config` fields, then optionally loads `<component directory>/urdf/component.xacro`. Components without this file use the standard YAML model generator.

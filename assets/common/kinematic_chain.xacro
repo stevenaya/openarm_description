@@ -53,15 +53,16 @@ limitations under the License.
     params="connected_to mount_origin topology prefix joint_origins joint_axes joint_limits joint_mimics:=${dict()} inertials visuals collisions reflect_x:=1 reflect_y:=1 reflect_z:=1 reflect_include_links:=${[]} reflect_include_joints:=${[]} origin_override_joints:=${dict()} limit_override_joints:=${dict()} tip_collapse_source_link:=none tip_collapse_child_link:=none skip_mount_joint:=${False} base_frame_shift:=none">
     <xacro:openarm_validate_topology topology="${topology}" component="${prefix}" />
     <xacro:property name="base" value="${topology['links'][0]}" />
+    <xacro:property name="actual_base" value="${prefix + base}" />
     <xacro:property name="base_reflects" value="${base in reflect_include_links}" />
-    <xacro:openarm_emit_link link_name="${prefix + base}" source_name="${base}"
+    <xacro:openarm_emit_link link_name="${actual_base}" source_name="${base}"
       inertials="${inertials}" visuals="${visuals}" collisions="${collisions}"
       reflect_x="${reflect_x if base_reflects else 1}" reflect_y="${reflect_y if base_reflects else 1}" reflect_z="${reflect_z if base_reflects else 1}"
       frame_shift="${base_frame_shift}" />
     <xacro:unless value="${skip_mount_joint}">
-      <joint name="${prefix + base}_mount_joint" type="fixed">
+      <joint name="${actual_base}_mount_joint" type="fixed">
         <xacro:openarm_emit_origin origin="${mount_origin}" />
-        <parent link="${connected_to}" /><child link="${prefix + base}" />
+        <parent link="${connected_to}" /><child link="${actual_base}" />
       </joint>
     </xacro:unless>
     <xacro:openarm_emit_chain index="0" joint_names="${list(topology['joints'].keys())}" topology="${topology}" prefix="${prefix}"

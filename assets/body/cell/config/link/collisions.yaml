@@ -1,0 +1,119 @@
+# Copyright 2026 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cell_base_link:
+- name: cell_table_col
+  origin:
+    x: 0.41
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.82
+      y: 1.1
+      z: 0.01
+- name: cell_left_wall_col
+  origin:
+    x: 0.43
+    y: 0.52
+    z: 0.41999999999999993
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.86
+      y: 0.06
+      z: 0.84
+- name: cell_right_wall_col
+  origin:
+    x: 0.43
+    y: -0.52
+    z: 0.41999999999999993
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.86
+      y: 0.06
+      z: 0.84
+- name: cell_front_wall_col
+  origin:
+    x: 0.85
+    y: 0.0
+    z: 0.41999999999999993
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.06
+      y: 0.98
+      z: 0.84
+- name: cell_roof_col
+  origin:
+    x: 0.41
+    y: 0.0
+    z: 0.8200000000000001
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.82
+      y: 1.1
+      z: 0.01
+- name: cell_rail_col1
+  origin:
+    x: 0.03
+    y: 0.0
+    z: 0.5249999999999999
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.06
+      y: 0.06
+      z: 0.6
+- name: cell_rail_col2
+  origin:
+    x: 0.0915
+    y: 0.0
+    z: 0.5349999999999999
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.063
+      y: 0.078
+      z: 0.58
+lifter_link:
+  origin:
+    x: -0.01575
+    y: 0.0
+    z: 0.0
+    roll: 0.0
+    pitch: 0.0
+    yaw: 0.0
+  geometry:
+    box:
+      x: 0.0915
+      y: 0.06
+      z: 0.122
