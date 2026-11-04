@@ -50,7 +50,7 @@
 <emission><color>0 0 0 1</color></emission><ambient><color>0.95 0.94 0.90 1</color></ambient>
 <diffuse><color>0.95 0.94 0.90 1</color></diffuse><specular><color>0.05 0.05 0.05 1</color></specular>
 <shininess><float>10</float></shininess></phong></technique></profile_COMMON></effect>
-<effect id="cell_light_curtain_yellow_effect" name="cell_light_curtain_yellow_effect"><profile_COMMON><technique sid="common"><phong><ambient><color>1.0 0.75 0.0 1.0</color></ambient><diffuse><color>1.0 0.75 0.0 1.0</color></diffuse><specular><color>0.1675 0.1675 0.1675 1</color></specular><shininess><float>22.4</float></shininess></phong></technique></profile_COMMON></effect>
+<effect id="cell_light_curtain_yellow_effect" name="cell_light_curtain_yellow_effect"><profile_COMMON><technique sid="common"><phong><ambient><color>0.95 0.65 0.0 1.0</color></ambient><diffuse><color>0.95 0.65 0.0 1.0</color></diffuse><specular><color>0.1675 0.1675 0.1675 1</color></specular><shininess><float>22.4</float></shininess></phong></technique></profile_COMMON></effect>
 </library_effects>
   <library_geometries>
     <geometry id="32beb9fe4cd24b6985555b10d3d76097" name="4063f1180ebd4dfe8cc09be70423d56b">
