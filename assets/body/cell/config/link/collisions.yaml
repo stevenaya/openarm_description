@@ -17,7 +17,7 @@ base_link:
   origin:
     x: 0.41
     y: 0.0
-    z: 0.0
+    z: -0.005
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -30,7 +30,7 @@ base_link:
   origin:
     x: 0.43
     y: 0.52
-    z: 0.41999999999999993
+    z: 0.415
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -43,7 +43,7 @@ base_link:
   origin:
     x: 0.43
     y: -0.52
-    z: 0.41999999999999993
+    z: 0.415
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -56,7 +56,7 @@ base_link:
   origin:
     x: 0.85
     y: 0.0
-    z: 0.41999999999999993
+    z: 0.415
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -69,7 +69,7 @@ base_link:
   origin:
     x: 0.41
     y: 0.0
-    z: 0.8200000000000001
+    z: 0.815
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -82,7 +82,7 @@ base_link:
   origin:
     x: 0.03
     y: 0.0
-    z: 0.5249999999999999
+    z: 0.52
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -95,7 +95,7 @@ base_link:
   origin:
     x: 0.0915
     y: 0.0
-    z: 0.5349999999999999
+    z: 0.53
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
@@ -108,7 +108,7 @@ lifter_link:
   origin:
     x: -0.01575
     y: 0.0
-    z: 0.0
+    z: -0.005
     roll: 0.0
     pitch: 0.0
     yaw: 0.0
