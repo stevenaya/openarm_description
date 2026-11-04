@@ -60,7 +60,8 @@ primary_arm:
     attach_to: body
     parent_reference_point: left_arm_mount_point
     parent: null
-    origin: null
+    origin:
+      pitch: 3.141592653589793
   reflect:
     x: 1
     y: -1
@@ -82,6 +83,14 @@ primary_arm:
       - joint7
       reference_points:
       - ee_mount_point
+  origin_override_joints:
+    joint1:
+      x: 0.0
+      y: -0.0625
+      z: 0.0
+      roll: 0.0
+      pitch: 3.141592653589793
+      yaw: 0.0
   limit_override_joints: {}
 secondary_arm:
   type: robot
@@ -99,11 +108,20 @@ secondary_arm:
     attach_to: body
     parent_reference_point: right_arm_mount_point
     parent: null
-    origin: null
+    origin:
+      pitch: 3.141592653589793
   reflect:
     x: 1
     y: 1
     z: 1
+  origin_override_joints:
+    joint1:
+      x: 0.0
+      y: -0.0625
+      z: 0.0
+      roll: 0.0
+      pitch: 3.141592653589793
+      yaw: 0.0
   limit_override_joints: {}
 primary_arm_end_effector:
   type: end_effector
