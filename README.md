@@ -30,7 +30,7 @@ The Cell preset reuses the V2 arms, grippers and head camera, with a 0–0.3 m v
 ros2 launch openarm_description display_openarm.launch.py arm_type:=v20 robot_preset:=cell_bimanual rviz_config:=cell_bimanual.rviz ros2_control:=false
 ```
 
-Lifter mass is estimated at 3.398 kg from the public CAD volumes, using aluminum for the short column and steel for the rail connectors. Its COM and inertia include the parallel-axis terms. Effort and velocity limits remain zero placeholders until hardware calibration. Cell collision boxes follow the MuJoCo Cell model. Visual materials use the Isaac Lab Cell palette with a metallic-gray lifter and black guide. When copying raw DAE diffuse values into linear USD color inputs, apply the inverse sRGB transfer.
+Lifter mass is estimated at 3.398 kg from the public CAD volumes, using aluminum for the short column and steel for the rail connectors. Its COM and inertia include the parallel-axis terms. Effort and velocity limits remain zero placeholders until hardware calibration. Cell collisions use separate boxes and triangular prisms fitted to the visual meshes. Visual materials use the Isaac Lab Cell palette with a metallic-gray lifter and black guide. When copying raw DAE diffuse values into linear USD color inputs, apply the inverse sRGB transfer.
 
 With ros2_control enabled, the lifter has its own position, velocity and effort interfaces. Use use_fake_hardware:=true for mock hardware; a real lifter plugin can be selected through body.control.hardware_plugin and flat driver parameters under body.control in the preset.
 
