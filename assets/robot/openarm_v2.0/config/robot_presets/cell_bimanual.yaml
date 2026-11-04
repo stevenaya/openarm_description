@@ -28,7 +28,7 @@ body:
   product: cell
   config: null
   inertials: nominal
-  prefix: openarm_
+  prefix: openarm_cell_
   connection:
     parent: world
     origin:
@@ -148,7 +148,7 @@ body_camera_mount:
   prefix: openarm_body_zed_support_
   connection:
     attach_to: body
-    parent_reference_point: camera_mount_point
+    parent_reference_point: lifter_camera_mount_point
 body_camera:
   type: sensor
   enabled: true
