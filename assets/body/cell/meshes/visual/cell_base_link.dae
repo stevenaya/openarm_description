@@ -88,7 +88,7 @@
       <node id="node4" name="node4">
         <instance_geometry url="#ca9257a3d15448568b918905b2bc680d">
           <bind_material>
-            <technique_common><instance_material symbol="cell_frame_symbol" target="#cell_frame_material" /><instance_material symbol="cell_guide_symbol" target="#cell_guide_material" /><instance_material symbol="cell_hardware_symbol" target="#cell_hardware_material" /><instance_material symbol="cell_panels_symbol" target="#cell_panels_material" /><instance_material symbol="cell_plastic_symbol" target="#cell_plastic_material" /><instance_material symbol="cell_tabletop_symbol" target="#cell_tabletop_material" /></technique_common></bind_material>
+            <technique_common><instance_material symbol="cell_frame_symbol" target="#cell_frame_material" /><instance_material symbol="cell_guide_symbol" target="#cell_guide_material" /><instance_material symbol="cell_hardware_symbol" target="#cell_hardware_material" /><instance_material symbol="cell_panels_symbol" target="#cell_panels_material" /><instance_material symbol="cell_plastic_symbol" target="#cell_plastic_material" /><instance_material symbol="cell_tabletop_symbol" target="#cell_frame_material" /></technique_common></bind_material>
         </instance_geometry>
       </node>
       <node id="node9" name="node9">
