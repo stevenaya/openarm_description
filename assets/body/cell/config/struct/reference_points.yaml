@@ -13,7 +13,7 @@
 # limitations under the License.
 
 left_arm_mount_point:
-  parent: lifter_link
+  parent: link2
   emit: false
   origin:
     x: 0.0
@@ -23,7 +23,7 @@ left_arm_mount_point:
     pitch: 0.0
     yaw: 0.0
 right_arm_mount_point:
-  parent: lifter_link
+  parent: link2
   emit: false
   origin:
     x: 0.0
@@ -33,7 +33,7 @@ right_arm_mount_point:
     pitch: 0.0
     yaw: 0.0
 lifter_camera_mount_point:
-  parent: lifter_link
+  parent: link2
   emit: true
   origin:
     x: 0.03
@@ -43,7 +43,7 @@ lifter_camera_mount_point:
     pitch: 0.0
     yaw: 0.0
 ceiling_camera_frame:
-  parent: base_link
+  parent: link1
   emit: true
   origin:
     x: 0.526165063509461
@@ -53,7 +53,7 @@ ceiling_camera_frame:
     pitch: 0.0
     yaw: 0.0
 arm_origin:
-  parent: lifter_link
+  parent: link2
   emit: true
   origin:
     x: 0.0

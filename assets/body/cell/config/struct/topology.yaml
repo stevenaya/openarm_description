@@ -13,10 +13,13 @@
 # limitations under the License.
 
 links:
-- base_link
-- lifter_link
+  link1:
+    name: base_link
+  link2:
+    name: lifter_link
 joints:
-  lifter_joint:
+  joint1:
+    name: lifter_joint
     type: prismatic
-    parent: base_link
-    child: lifter_link
+    parent: link1
+    child: link2
