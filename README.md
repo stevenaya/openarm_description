@@ -32,7 +32,7 @@ ros2 launch openarm_description display_openarm.launch.py arm_type:=v20 robot_pr
 
 Lifter mass is estimated at 3.398 kg from the public CAD volumes, using aluminum for the short column and steel for the rail connectors. Its COM and inertia include the parallel-axis terms. Effort and velocity limits remain zero placeholders until hardware calibration. Cell collisions use separate boxes and triangular prisms fitted to the visual meshes. Visual materials use the Isaac Lab Cell palette with a metallic-gray lifter and black guide. When copying raw DAE diffuse values into linear USD color inputs, apply the inverse sRGB transfer.
 
-With ros2_control enabled, the lifter has its own position, velocity and effort interfaces. Use use_fake_hardware:=true for mock hardware; a real lifter plugin can be selected through body.control.hardware_plugin and flat driver parameters under body.control in the preset.
+With ros2_control enabled, the lifter has its own position, velocity and effort interfaces. Use use_fake_hardware:=true for mock hardware; a real lifter plugin can be selected through systems.openarm_cell_hardware_interface.hardware_plugin and driver parameters under that system in the preset.
 
 Cell CAD-derived meshes use the [included license](assets/body/cell/LICENSE.txt). CAD source: [OpenArm Hardware 2.0.0](https://github.com/enactic/openarm_hardware/releases/tag/2.0.0).
 
@@ -68,4 +68,4 @@ Copyright 2025 Enactic, Inc.
 All participation in the OpenArm project is governed by our
 [Code of Conduct](CODE_OF_CONDUCT.md).
 
-Control settings live directly under each component's `control` mapping. Set `hardware_plugin`, `can_interface` and `can_fd` in the preset; `use_fake_hardware:=true` selects `mock_components/GenericSystem`. The optional `system_name` defaults to `<component_name>_hardware_interface`. Explicit control parameters override generated defaults and are emitted once. Components declare their generated topology, names and mimic relationships in `describe_component`; assembly and control consume that shared description.
+Control partitions are declared under the preset's top-level `systems` mapping. Each system's `joints` maps component instance names to local joint entries with an `idx`. Each active joint requires a unique positive integer `idx` within its system; gaps are allowed. Joints are emitted in index order, with `idx` included as a joint parameter for runtime adapters. Disabled components are skipped, and final joint names come from the resolved component descriptions. Standard OpenArm hardware defaults are supplied by the model entry. Per-system hardware_plugin and driver parameters can override those defaults, and CAN launch arguments take precedence. `use_fake_hardware:=true` selects `mock_components/GenericSystem`. Optional `command_interfaces` and `state_interfaces` default to `[position, velocity, effort]`.
